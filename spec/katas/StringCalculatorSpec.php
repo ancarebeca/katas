@@ -29,10 +29,30 @@ class StringCalculatorSpec extends ObjectBehavior
         $this->add("1,2")->shouldReturn(3);
     }
 
+    function it_sums_more_than_two_numbers()
+    {
+        $this->add("1,1,4")->shouldReturn(6);
+        $this->add("3,4,4")->shouldReturn(11);
+    }
+
+    function it_allows_lines_between_numbers()
+    {
+        $this->add("1\n2,3")->shouldReturn(6);
+    }
+    function it_supports_differtent_delimiters()
+    {
+        $this->add("//;\n1;2")->shouldReturn(3);
+    }
+    function it_not_allow_negative_number()
+    {
+        $this->shouldThrow(new \Exception('Negatives not allowed'))->during('add', array('-1'));
+    }
+
+    function it_numbers_bigger_than_one_thousand_should_be_ignored()
+    {
+        $this->add("2,1001")->shouldReturn(2);
+        $this->add("3,2000")->shouldReturn(3);
+    }
 }
 
-//1 Create a simple String calculator with a method int Add(string numbers)
-//  * The method can take 0, 1 or 2 numbers, and will return their sum (for an empty string it will return 0) for example “” or “1” or “1,2”
-//  * Start with the simplest test case of an empty string and move to 1 and two numbers
-//* Remember to solve things as simply as possible so that you force yourself to write tests you did not think about
-//* Remember to refactor after each passing test
+
