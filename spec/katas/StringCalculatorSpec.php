@@ -39,10 +39,12 @@ class StringCalculatorSpec extends ObjectBehavior
     {
         $this->add("1\n2,3")->shouldReturn(6);
     }
+
     function it_supports_differtent_delimiters()
     {
         $this->add("//;\n1;2")->shouldReturn(3);
     }
+
     function it_not_allow_negative_number()
     {
         $this->shouldThrow(new \Exception('Negatives not allowed'))->during('add', array('-1'));

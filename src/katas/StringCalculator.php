@@ -24,11 +24,11 @@ class StringCalculator
     {
         $total = 0;
 
-        if(!$this->isValid($value)){
+        if (!$this->isValid($value)) {
             throw new Exception('Negatives not allowed');
         }
 
-        if($value != self::EMPTY_STRING) {
+        if ($value != self::EMPTY_STRING) {
 
             $normalizedValue = $this->normalizeString($value);
 
@@ -54,10 +54,11 @@ class StringCalculator
 
     private function replaceDefineSeparatorByDefaultSeparator($value)
     {
-        if(substr($value, 0, 2) == self::DEFINE_SEPARATOR){
+        if (substr($value, 0, 2) == self::DEFINE_SEPARATOR) {
             $separator = $value[2];
             $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
         }
+
         return $value;
 
     }
@@ -69,7 +70,7 @@ class StringCalculator
 
     private function ignoreNumbersBiggerThanOneThousand($value)
     {
-       return preg_replace("/,[0-9]{4,}/", "", $value);
+        return preg_replace("/,[0-9]{4,}/", "", $value);
     }
 
 
@@ -77,9 +78,10 @@ class StringCalculator
     {
         $validate = true;
         $pattern = '/-[0-9]+/';
-        if(preg_match($pattern, $value)){
+        if (preg_match($pattern, $value)) {
             $validate = false;
         }
+
         return $validate;
     }
 }
