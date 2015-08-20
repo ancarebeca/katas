@@ -44,14 +44,27 @@ class StringCalculator
     {
         $value = $this->ignoreNumbersBiggerThanOneThousand($value);
 
+        $normalizedValue = $this->replaceDefineSeparatorByDefaultSeparator($value);
+
+        $normalizedValue = $this->replaceNewLineByDefaultSeparator($normalizedValue);
+
+        return $normalizedValue;
+
+    }
+
+    private function replaceDefineSeparatorByDefaultSeparator($value)
+    {
         if(substr($value, 0, 2) == self::DEFINE_SEPARATOR){
             $separator = $value[2];
             $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
         }
-        $normalizedValue = str_replace(self::NEW_LINE, self::DEFAULT_SEPARATOR, $value);
+        return $value;
 
-        return $normalizedValue;
+    }
 
+    private function replaceNewLineByDefaultSeparator($value)
+    {
+        return str_replace(self::NEW_LINE, self::DEFAULT_SEPARATOR, $value);
     }
 
     private function ignoreNumbersBiggerThanOneThousand($value)
