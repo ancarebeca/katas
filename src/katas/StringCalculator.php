@@ -11,9 +11,9 @@ use Exception;
 class StringCalculator
 {
     const EMPTY_STRING = "";
-    const DEFAULT_SEPARATOR = ',';
-    const DEFINE_SEPARATOR = '[]';
-    const NEW_LINE = '\n';
+    const DEFAULT_SEPARATOR = ",";
+    const DEFINE_SEPARATOR = "//";
+    const NEW_LINE = "\n";
 
     /**
      * @param String $value
@@ -22,29 +22,43 @@ class StringCalculator
      */
     public function add($value)
     {
-        if($value == self::EMPTY_STRING){
-            return 0;
-        }
+        $total = 0;
 
         if(!$this->isValid($value)){
             throw new Exception('Negatives not allowed');
         }
 
+        if($value != self::EMPTY_STRING) {
+
+            $normalizedValue = $this->normalizeString($value);
+
+            $numbers = explode(self::DEFAULT_SEPARATOR, $normalizedValue);
+
+            $total = array_sum($numbers);
+        }
+
+        return intval($total);
+    }
+
+    private function normalizeString($value)
+    {
+        $value = $this->ignoreNumbersBiggerThanOneThousand($value);
+
         if(substr($value, 0, 2) == self::DEFINE_SEPARATOR){
             $separator = $value[2];
             $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
         }
+        $normalizedValue = str_replace(self::NEW_LINE, self::DEFAULT_SEPARATOR, $value);
 
-        $value = preg_replace("/,[0-9]{4,}/", "", $value);
+        return $normalizedValue;
 
-        $normalizedValue = str_replace(self, self::DEFAULT_SEPARATOR, $value);
-
-        $numbers = explode(",", $normalizedValue);
-
-        $total = array_sum($numbers);
-
-        return intval($total);
     }
+
+    private function ignoreNumbersBiggerThanOneThousand($value)
+    {
+       return preg_replace("/,[0-9]{4,}/", "", $value);
+    }
+
 
     private function isValid($value)
     {
