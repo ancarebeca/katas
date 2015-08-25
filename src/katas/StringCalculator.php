@@ -40,6 +40,8 @@ class StringCalculator
         return intval($total);
     }
 
+
+
     private function normalizeString($value)
     {
         $value = $this->ignoreNumbersBiggerThanOneThousand($value);
@@ -51,10 +53,23 @@ class StringCalculator
         return $normalizedValue;
 
     }
-
+    //    "//;\n1;2"
+    //    "//[***]\n1***2***3"
     private function replaceDefineSeparatorByDefaultSeparator($value)
     {
+        $pattern = '^\/\/(.|\[[[\s\S]+\])\\n';
+        $pattern2 = '^\[[\s\S]+\]';
+
+        if(preg_match($pattern, $value, $matches)) { // Si caza es pq se ha definido un separador
+            if (preg_match($pattern2, $value[1], $matches)) {
+                $separator = $value[2];
+                $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
+            }
+
+        }
+
         if (substr($value, 0, 2) == self::DEFINE_SEPARATOR) {
+
             $separator = $value[2];
             $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
         }

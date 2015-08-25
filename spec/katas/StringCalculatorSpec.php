@@ -55,6 +55,11 @@ class StringCalculatorSpec extends ObjectBehavior
         $this->add("2,1001")->shouldReturn(2);
         $this->add("3,2000")->shouldReturn(3);
     }
+
+    function it_supports_delimiters_of_any_length()
+    {
+        $this->add("//[***]\n1***2***3")->shouldReturn(6);
+    }
 }
 
 
