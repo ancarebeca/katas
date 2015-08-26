@@ -62,7 +62,7 @@ class StringCalculatorSpec extends ObjectBehavior
         $this->add("//[***]\n1***2***3")->shouldReturn(6);
     }
 
-    function it_supports_mulriple_delimiters()
+    function it_supports_multiple_delimiters()
     {
         $this->add("//[*][%]\n1*2%3")->shouldReturn(6);
         $this->add("//[*****][%]\n1*****2%3")->shouldReturn(6);
