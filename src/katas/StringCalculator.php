@@ -46,7 +46,7 @@ class StringCalculator
     {
         $value = $this->ignoreNumbersBiggerThanOneThousand($value);
 
-        $normalizedValue = $this->replaceDefineSeparatorByDefaultSeparator($value);
+        $normalizedValue = $this->replaceDefineSeparator($value);
 
         $normalizedValue = $this->replaceNewLineByDefaultSeparator($normalizedValue);
 
@@ -54,21 +54,19 @@ class StringCalculator
 
     }
 
-    private function replaceDefineSeparatorByDefaultSeparator($value)
+    private function replaceDefineSeparator($value)
     {
-        $pattern = '/^\/\/\[(.+)\]\\n/';
-        if(preg_match($pattern, $value, $matches)) {
-            $separator = $matches[1];
-            var_dump($separator);
-            $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
+        $pattern = '/\/\/(.*)\\n/';
+        if(preg_match_all($pattern, $value, $matches)) {
+            if (preg_match_all('/\[(.+?)\]/', $value, $matches_custom_delimiter)) {
+                foreach ($matches_custom_delimiter[1] as $separator) {
+                    $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
+                }
+            } else {
+                $separator = $matches[1];
+                $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
+            }
         }
-
-        $pattern = '/^\/\/(.+)\\n/';
-        if(preg_match($pattern, $value, $matches)) {
-            $separator = $matches[1];
-            $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
-        }
-
         return $value;
     }
 
@@ -81,7 +79,6 @@ class StringCalculator
     {
         return preg_replace("/,[0-9]{4,}/", "", $value);
     }
-
 
     private function isValid($value)
     {

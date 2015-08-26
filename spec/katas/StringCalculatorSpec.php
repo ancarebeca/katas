@@ -58,7 +58,14 @@ class StringCalculatorSpec extends ObjectBehavior
 
     function it_supports_delimiters_of_any_length()
     {
+        $this->add("//[d***]\n1d***2d***3")->shouldReturn(6);
         $this->add("//[***]\n1***2***3")->shouldReturn(6);
+    }
+
+    function it_supports_mulriple_delimiters()
+    {
+        $this->add("//[*][%]\n1*2%3")->shouldReturn(6);
+        $this->add("//[*****][%]\n1*****2%3")->shouldReturn(6);
     }
 }
 
