@@ -1,4 +1,4 @@
-## String Calculator
+# String Calculator
 The following is a TDD Kata- an exercise in coding, refactoring and test-first, that you should apply daily for at least 15 minutes (I do 30).
 
 # Before you start: 
@@ -15,27 +15,35 @@ Make sure you only test for correct inputs. There is no need to test for invalid
 * Remember to solve things as simply as possible so that you force yourself to write tests you did not think about
 * Remember to refactor after each passing test
 * Allow the Add method to handle an unknown amount of numbers
-* Allow the Add method to handle new lines between numbers (instead of commas). 
+* Allow the Add method to handle new lines between numbers (instead of commas).
+ 
 ```
 The following input is ok:  “1\n2,3”  (will equal 6)
 The following input is NOT ok:  “1,\n” (not need to prove it - just clarifying)
 ```
+
 * Support different delimiters.
 To change a delimiter, the beginning of the string will contain a separate line that looks like this:   
+
 ```
 “//[delimiter]\n[numbers…]” for example “//;\n1;2” should return three where the default delimiter is ‘;’ .
 ```
+
 the first line is optional. All existing scenarios should still be supported
 * Calling Add with a negative number will throw an exception “negatives not allowed” - and the negative that was passed.if there are multiple negatives, show all of them in the exception message
 stop here if you are a beginner. 
 *Continue if you can finish the steps so far in less than 30 minutes.*
 * Numbers bigger than 1000 should be ignored, so adding 2 + 1001  = 2
 * Delimiters can be of any length with the following format:  
+
 ```
 “//[delimiter]\n” for example: “//[***]\n1***2***3” should return 6
 ```
+
 * Allow multiple delimiters like this:  “//[delim1][delim2]\n” for example:
+
 ```
  “//[*][%]\n1*2%3” should return 6
  ```
+ 
 Make sure you can also handle multiple delimiters with length longer than one char
