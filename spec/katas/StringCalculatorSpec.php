@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\katas;
+namespace spec\Katas;
 
-use katas\StringCalculator;
+use Katas\StringCalculator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

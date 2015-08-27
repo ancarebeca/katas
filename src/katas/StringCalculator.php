@@ -1,6 +1,6 @@
 <?php
 
-namespace katas;
+namespace Katas;
 
 use Exception;
 
