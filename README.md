@@ -29,7 +29,8 @@ To change a delimiter, the beginning of the string will contain a separate line 
 “//[delimiter]\n[numbers…]” for example “//;\n1;2” should return three where the default delimiter is ‘;’ .
 ```
 
-the first line is optional. All existing scenarios should still be supported
+The first line is optional. All existing scenarios should still be supported
+
 * Calling Add with a negative number will throw an exception “negatives not allowed” - and the negative that was passed.if there are multiple negatives, show all of them in the exception message
 stop here if you are a beginner. 
 *Continue if you can finish the steps so far in less than 30 minutes.*
