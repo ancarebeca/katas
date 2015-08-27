@@ -34,7 +34,7 @@ The first line is optional. All existing scenarios should still be supported
 * Calling Add with a negative number will throw an exception “negatives not allowed” - and the negative that was passed. If there are multiple negatives, show all of them in the exception message
  
 
-# Stop here if you are a beginner, continue if you can finish the steps so far in less than 30 minutes.
+* Stop here if you are a beginner, continue if you can finish the steps so far in less than 30 minutes. *
 
 * Numbers bigger than 1000 should be ignored, so adding 2 + 1001  = 2
 * Delimiters can be of any length with the following format:  
