@@ -29,7 +29,6 @@ class StringCalculator
         }
 
         if ($value != self::EMPTY_STRING) {
-
             $normalizedValue = $this->normalizeString($value);
 
             $numbers = explode(self::DEFAULT_SEPARATOR, $normalizedValue);
@@ -40,8 +39,6 @@ class StringCalculator
         return intval($total);
     }
 
-
-
     private function normalizeString($value)
     {
         $value = $this->ignoreNumbersBiggerThanOneThousand($value);
@@ -51,7 +48,6 @@ class StringCalculator
         $normalizedValue = $this->replaceNewLineByDefaultSeparator($normalizedValue);
 
         return $normalizedValue;
-
     }
 
     private function replaceDefineSeparator($value)
