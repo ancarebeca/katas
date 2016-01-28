@@ -11,8 +11,11 @@ use Exception;
 class StringCalculator
 {
     const EMPTY_STRING = "";
+
     const DEFAULT_SEPARATOR = ",";
+
     const DEFINE_SEPARATOR = "//";
+
     const NEW_LINE = "\n";
 
     /**
@@ -39,6 +42,10 @@ class StringCalculator
         return intval($total);
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
     private function normalizeString($value)
     {
         $value = $this->ignoreNumbersBiggerThanOneThousand($value);
@@ -50,10 +57,14 @@ class StringCalculator
         return $normalizedValue;
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
     private function replaceDefineSeparator($value)
     {
         $pattern = '/\/\/(.*)\\n/';
-        if(preg_match_all($pattern, $value, $matches)) {
+        if (preg_match_all($pattern, $value, $matches)) {
             if (preg_match_all('/\[(.+?)\]/', $value, $matches_custom_delimiter)) {
                 foreach ($matches_custom_delimiter[1] as $separator) {
                     $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
@@ -63,19 +74,32 @@ class StringCalculator
                 $value = str_replace($separator, self::DEFAULT_SEPARATOR, $value);
             }
         }
+
         return $value;
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
     private function replaceNewLineByDefaultSeparator($value)
     {
         return str_replace(self::NEW_LINE, self::DEFAULT_SEPARATOR, $value);
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
     private function ignoreNumbersBiggerThanOneThousand($value)
     {
         return preg_replace("/,[0-9]{4,}/", "", $value);
     }
 
+    /**
+     * @param $value
+     * @return bool
+     */
     private function isValid($value)
     {
         $validate = true;
