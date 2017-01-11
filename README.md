@@ -4,3 +4,4 @@ A code kata is an exercise in programming which helps a programmer hone their sk
 This repository contains some katas in different languages:
 - [php](php/README.md)
 - [go](go/README.md)
+- [java](java/README.md)
