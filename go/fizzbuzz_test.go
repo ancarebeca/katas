@@ -1,4 +1,4 @@
-package go_katas
+package main
 
 import (
 	"testing"
