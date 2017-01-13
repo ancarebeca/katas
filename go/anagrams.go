@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func GetPermutations(str string) []string {
 	if len(str) <= 1 {
 		return []string{str}
@@ -30,6 +28,3 @@ func insertAt(i int, char string, perm string) string {
 	return start + char + end
 }
 
-func main() {
-	fmt.Printf("All perms are - %v", GetPermutations("abb"))
-}
